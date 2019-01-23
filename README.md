@@ -1,5 +1,5 @@
 
-![](https://github.com/ShadowNight666/BeezCode/images/banner.png)
+![](https://raw.githubusercontent.com/ShadowNight666/BeezCode/master/images/banner.png)
 # Overview
 
 BeezCode is a simple tool that allows you to put syntax highlighting to your codes on your sites. This is internally configurable if you want to have more syntax or change something.
@@ -8,7 +8,11 @@ BeezCode is a simple tool that allows you to put syntax highlighting to your cod
 
 Import BeezCode into your html such as:
 ```html
-<script  src="./BeezCode.js"></script>
+<script  src="https://gitcdn.link/repo/ShadowNight666/BeezCode/master/src/BeezCode.js"></script>
+```
+If the link doesn't work/is dead, create a new one using [GitCDN](https://gitcdn.link) and this link:
+```
+https://raw.githubusercontent.com/ShadowNight666/BeezCode/master/src/BeezCode.js
 ```
 
 To use BeezCode, add your code in a ``<pre>`` tag with the class ``beez``, like:
