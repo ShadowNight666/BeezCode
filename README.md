@@ -35,7 +35,7 @@ class regex:
 BeezCode has 2 parts: the configuration part and the syntax part.
 To create a new syntax, simply add in the variable ``syntaxes``:
 
-```json
+```js
 your_group_name: {
 
 	// Liste of your patterns as regex
@@ -54,9 +54,13 @@ your_group_name: {
 }
 ```
 You can create a "dynamic" pattern, like:
-```json
+```js
 {"your pattern": {
 	get: [1]
 }}
 ```
 The "get" method will return matched group (in the example above, it will return the matched group ``1`` as pattern). You can return a lot of group because it's an array.
+
+# Screenshots:
+
+![](https://raw.githubusercontent.com/ShadowNight666/BeezCode/master/images/example.PNG)
