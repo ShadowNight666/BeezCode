@@ -36,12 +36,7 @@ const syntaxes = {
 		patterns: [
 			"require",
 			"import",
-			
-			{
-				"class (\\w+)": {
-					get: [1]
-				}
-			}
+			"class"
 		],
 		css: {
 			color: "#fbff23",
@@ -55,10 +50,22 @@ const syntaxes = {
 		css: {
 			color: "#6497e5"
 		}
+	},
+	comments: {
+		patterns: [
+			{
+				"^\/\/(.+)": {
+					get: [0]
+				}
+			}
+		],
+		css: {
+			color: "#5e7f43"
+		}
 	}
 }
 
-window.onload = function() {
+document.addEventListener('DOMContentLoaded', () => {
 	let codes = document.getElementsByClassName("beez")
 	for (i = 0; i < codes.length; i++) {
 		for (setting in config.css) {
@@ -69,33 +76,35 @@ window.onload = function() {
 
 		for (group in syntaxes) {
 
-			syntaxes[group].patterns.forEach(pattern => {
-				for (attribut in syntaxes[group].css) {
-					if (typeof pattern === "object") {
-						for (pattern in syntaxes[group].patterns.find(o => typeof o === "object")) {
-							syntaxes[group].patterns.find(o => typeof o === "object")[pattern].get.forEach(match => {
-								if (code.match(pattern)) {
-									let matcher = code.match(pattern)[0]
-									matcher = matcher.replace(
-										code.match(pattern)[match],
-										'<span style="' + attribut.replace(/\_/gm, "-") + ': ' + syntaxes[group].css[attribut] + '">' + code.match(pattern)[match] + '</span>'
-									)
+			let css = 'style="';
 
-									code = code.replace(
-										new RegExp("\\b" + code.match(pattern)[0] + "\\b", "gm"),
-										matcher
-									)
-								}
+			for (attribut in syntaxes[group].css) {	
+				css = css + attribut.replace(/\_/gm, "-") + ': ' + syntaxes[group].css[attribut] + ';';
+			}
+
+			css = css + '"';
+
+			syntaxes[group].patterns.forEach(pattern => {
+					
+				if (typeof pattern === "object") {
+					for (pattern in syntaxes[group].patterns.find(o => typeof o === "object")) {
+						syntaxes[group].patterns.find(o => typeof o === "object")[pattern].get.forEach(match => {
+							let matcher = new RegExp(pattern, "gm").exec(code);
+							if (matcher != null) {
+								code = code.replace(
+									matcher[match],
+									'<span ' + css + '>' + matcher[match] + '</span>'
+								)
+							}
 								
-							})
-						}
-					} else {
-						code = code.replace(
-							new RegExp("\\b" + pattern + "\\b", "gm"),
-							'<span style="' + attribut.replace(/\_/gm, "-") + ': ' + syntaxes[group].css[attribut] + '">$&</span>'
-						)
+						})
 					}
 					
+				} else {
+					code = code.replace(
+						new RegExp(pattern, "gm"),
+						'<span ' + css + '>$&</span>'
+					)
 				}
 		
 			});
@@ -103,4 +112,4 @@ window.onload = function() {
 
 		codes[i].innerHTML = code
 	}
-}
+})
