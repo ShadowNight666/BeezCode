@@ -63,4 +63,8 @@ The "get" method will return matched group (in the example above, it will return
 
 # Screenshots:
 
-![](https://raw.githubusercontent.com/ShadowNight666/BeezCode/master/images/example.PNG)
+### Python example:
+![](https://raw.githubusercontent.com/ShadowNight666/BeezCode/master/images/python_example.PNG)
+
+### Java example:
+![](https://raw.githubusercontent.com/ShadowNight666/BeezCode/master/images/java_example.PNG)
