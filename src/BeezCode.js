@@ -10,14 +10,22 @@ const config = {
 const syntaxes = {
 	declarations: {
 		patterns: [
-			"const",
-			"var",
-			"let",
-			"public",
+			// Javascript
+			"const|var|let",
+
+			// Java
+			"(public|private|protected)",
 			"private",
 			"protected",
+			"static",
+			"synchronized",
+			"void",
+
+			// All
 			"this",
-			"self"
+			"self",
+			"new",
+			"super"
 		],
 		css: {
 			color: "#246fe2"
@@ -25,22 +33,61 @@ const syntaxes = {
 	},
 	functions: {
 		patterns: [
+			// Functionnal languages
 			"function",
-			"defp?"
+
+			// Elixir language
+			"defp?",
+
+			// All languages
+			{
+				"([a-zA-Z0-9]+)\\(": {
+					get: [1]
+				}
+			}
 		],
 		css: {
 			color: "#d10ac7"
+		}
+	},
+	loops: {
+		patterns: [
+			"for",
+			"forEach"
+		],
+		css: {
+			color: "#246fe2"
 		}
 	},
 	imports: {
 		patterns: [
 			"require",
 			"import",
-			"class"
+			"class",
+			"package",
+			"include"
 		],
 		css: {
 			color: "#fbff23",
 			font_weight: "bold"
+		}
+	},
+	inheritance: {
+		patterns: [
+			// Java
+			"implements",
+			"extends"
+		],
+		css: {
+			color: "#f23e3e"
+		}
+	},
+	errors: {
+		patterns: [
+			"try|catch"
+		],
+		css: {
+			color: "#f23e3e"
 		}
 	},
 	returns: {
@@ -53,14 +100,19 @@ const syntaxes = {
 	},
 	comments: {
 		patterns: [
-			{
-				"^\/\/(.+)": {
-					get: [0]
-				}
-			}
+			"\/\/.*",
+			"\%.*"
 		],
 		css: {
 			color: "#5e7f43"
+		}
+	},
+	strings: {
+		patterns: [
+			"\".*\""
+		],
+		css: {
+			color: "#f9ad2a"
 		}
 	}
 }
@@ -69,20 +121,20 @@ document.addEventListener('DOMContentLoaded', () => {
 	let codes = document.getElementsByClassName("beez")
 	for (i = 0; i < codes.length; i++) {
 		for (setting in config.css) {
-			codes[i].style[setting.replace(/\_/gm, "-")] = config.css[setting]
+			codes[i].style[setting.replace(/\_/gm, "-")] = config.css[setting];
 		}
 
-		let code = codes[i].innerHTML
+		let code = codes[i].innerHTML;
 
 		for (group in syntaxes) {
 
-			let css = 'style="';
+			let css = 'style=&quot;';
 
 			for (attribut in syntaxes[group].css) {	
 				css = css + attribut.replace(/\_/gm, "-") + ': ' + syntaxes[group].css[attribut] + ';';
 			}
 
-			css = css + '"';
+			css = css + '&quot;';
 
 			syntaxes[group].patterns.forEach(pattern => {
 					
@@ -94,22 +146,23 @@ document.addEventListener('DOMContentLoaded', () => {
 								code = code.replace(
 									matcher[match],
 									'<span ' + css + '>' + matcher[match] + '</span>'
-								)
+								);
 							}
 								
-						})
+						});
 					}
 					
 				} else {
 					code = code.replace(
 						new RegExp(pattern, "gm"),
 						'<span ' + css + '>$&</span>'
-					)
+					);
 				}
 		
 			});
 		}
 
-		codes[i].innerHTML = code
+		code = code.replace(/\&quot\;/gm, '"');
+		codes[i].innerHTML = code;
 	}
 })
