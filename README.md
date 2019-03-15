@@ -7,7 +7,7 @@
  * [Installation](#installation)
  * [Configuration](#configuration)
  * [Screenshots](#screenshots)
- * [Help us!](#help_us)
+ * [Help us!](#help-us)
 
 # Overview
 
