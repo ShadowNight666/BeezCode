@@ -1,8 +1,25 @@
 
 ![](https://raw.githubusercontent.com/ShadowNight666/BeezCode/master/images/banner.png)
+
+# Summary
+
+ * [Overview](#overview)
+ * [Installation](#installation)
+ * [Configuration](#configuration)
+ * [Screenshots](#screenshots)
+ * [Help us!](#help_us)
+
 # Overview
 
 BeezCode is a simple tool that allows you to put syntax highlighting to your codes on your sites. This is internally configurable if you want to have more syntax or change something.
+
+# Why BeezCode?
+
+ - [x] Simple to use
+ - [x] Documented and explained
+ - [x] Easy to configure
+ - [x] Fast
+ - [x] Let your imagination run free and create easily your own syntax highlighting
 
 # Installation
 
@@ -68,3 +85,9 @@ The "get" method will return matched group (in the example above, it will return
 
 ### Java example:
 ![](https://raw.githubusercontent.com/ShadowNight666/BeezCode/master/images/java_example.PNG)
+
+# Help us
+
+For the moment, I'm alone on this project. Your participation would help me to improve it and make it better. I'm not perfect in my code and I still have a lot to learn. Feel free to make [Pull Requests](https://github.com/ShadowNight666/BeezCode/pulls) when you want to make your patterns and syntax highlighting public. Don't forget to make an [Issue](https://github.com/ShadowNight666/BeezCode/issues) in case of a problem, or even just to suggest a new idea or improvement.
+
+Thank you very much to the people who are involved in my project.
